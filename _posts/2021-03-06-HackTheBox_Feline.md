@@ -1,6 +1,9 @@
 ---
 title: HackTheBox Feline
-published: true
+author: Marius Kimmina
+date: 2021-03-10 14:10:00 +0800
+categories: [HackTheBox]
+tags: [docker, tomcat, deserialization]
 ---
 
 ## 0x0 Introduction
