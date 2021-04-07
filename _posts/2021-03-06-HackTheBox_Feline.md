@@ -8,7 +8,8 @@ tags: [docker, linux, tomcat]
 
 ## 0x0 Introduction
 The first **hard** box that I have ever pwned, so lets dive right into it. This box involved a java deserialization attack to first get an inital foothold, once we are on it we use a known exploit in `saltstack` to become root of docker container, now you might wonder: Why would we want to become root of a docker-container? Well this docker container also had a miss configuration issue which then allowed us to mount files from the host system, such as the root.txt, into the container.
-![image](/assets/images/feline/feline-pwn.png)
+![image](/assets/images/feline/feline-pwn.png "Feline has been pwned")
+
 
 ## 0x1 How not to handle error messages
 
