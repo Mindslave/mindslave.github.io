@@ -3,7 +3,7 @@ title: HackTheBox Feline
 author: Marius Kimmina
 date: 2021-03-08 14:10:00 +0800
 categories: [HackTheBox]
-tags: [docker][linux][tomcat]
+tags: [docker, linux, tomcat]
 ---
 
 ## 0x0 Introduction
