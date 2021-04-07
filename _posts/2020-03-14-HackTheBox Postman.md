@@ -1,8 +1,11 @@
 ---
 title: HackTheBox Postman 
-published: True
+author: Marius Kimmina
+date: 2020-03-14 14:10:00 +0800
+categories: [HackTheBox]
+tags: [Redis, Webminn]
+published: true
 ---
-
 
 # 0x0 Introduction
 My first post on a HTB machine and the second Box I managed to own (the first one is yet to retire so there will also be writeup for that) featuring redis and webmin.  
