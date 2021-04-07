@@ -3,7 +3,7 @@ title: Malware Analysis - unpacking GlobeImposter Ransomware
 author: Marius Kimmina
 date: 2020-10-31 14:10:00 +0800
 categories: [Malware Analysis]
-tags: [Malware][Packing][Ransomware]
+tags: [Malware, Packing, Ransomware]
 published: true
 ---
 
