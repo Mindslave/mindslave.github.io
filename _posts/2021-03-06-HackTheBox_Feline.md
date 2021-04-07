@@ -8,7 +8,7 @@ tags: [docker, linux, tomcat]
 
 ## 0x0 Introduction
 The first **hard** box that I have ever pwned, so lets dive right into it. This box involved a java deserialization attack to first get an inital foothold, once we are on it we use a known exploit in `saltstack` to become root of docker container, now you might wonder: Why would we want to become root of a docker-container? Well this docker container also had a miss configuration issue which then allowed us to mount files from the host system, such as the root.txt, into the container.
-(![image](/assets/images/feline/feline-pwn.png "Feline has been pwned")
+![image](/assets/images/feline/feline-pwn.png)
 
 ## 0x1 How not to handle error messages
 
@@ -35,15 +35,15 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 if we look at the website, running on port 8080, we see that this is some kind of malware analysis engine, called Virusbucket, and that we can upload files. 
 
-(![image](/assets/images/feline/feline-virusbucket.png "Feline Virusbucket")
+![image](/assets/images/feline/feline-virusbucket.png "Feline Virusbucket")
 
 if we capture the HTTP request for the file-upload, you can use a proxy like burp or ZAP for this, then you will see this:
 
-(![image](/assets/images/feline/feline-file-upload.png "Feline Upload")
+![image](/assets/images/feline/feline-file-upload.png "Feline Upload")
 
 But if we replace the filename here with some nonsense, then we can error from the application in which it leaks the location that our files are being upload to:
 
-(![image](/assets/images/feline/feline-upload-error.png "Feline Upload Error")
+![image](/assets/images/feline/feline-upload-error.png "Feline Upload Error")
 
 Which is some really useful information because if we can find a way to interact with the files that we have uploaded, through a tomcat vulnerability for example, then we need to know where to look for our uploaded files.
 
