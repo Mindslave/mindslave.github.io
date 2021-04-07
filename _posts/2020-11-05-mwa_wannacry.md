@@ -1,5 +1,9 @@
 ---
 title: Malware Analysis - WannaCry Part 1
+author: Marius Kimmina
+date: 2021-03-08 14:10:00 +0800
+categories: [Malware Analysis]
+tags: [Malware][WannaCry]
 published: false
 ---
 
