@@ -1,5 +1,9 @@
 ---
 title: Phoenix Stack-Two 
+author: Marius Kimmina
+date: 2019-10-20 14:10:00 +0800
+categories: [Binary Exploitation]
+tags: [Buffer Overflow]
 published: true
 ---
 

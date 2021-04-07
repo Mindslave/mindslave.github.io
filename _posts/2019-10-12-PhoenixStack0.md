@@ -1,5 +1,9 @@
 ---
 title: Phoenix Stack-Zero and One
+author: Marius Kimmina
+date: 2019-10-12 14:10:00 +0800
+categories: [Binary Exploitation]
+tags: [Buffer Overflow]
 published: true
 ---
 

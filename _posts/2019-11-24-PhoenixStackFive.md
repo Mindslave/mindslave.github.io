@@ -1,9 +1,11 @@
 ---
 title: Phoenix Stack-Five
+author: Marius Kimmina
+date: 2019-11-24 14:10:00 +0800
+categories: [Binary Exploitation]
+tags: [Buffer Overflow]
 published: true
 ---
-
-
 
 ### 0x0. Introduction
 For a full introduction to this series and setup description please look at the first post (Phoenix Stack-Zero and One).

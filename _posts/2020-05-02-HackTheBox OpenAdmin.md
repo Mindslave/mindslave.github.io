@@ -1,7 +1,7 @@
 ---
 title: HackTheBox OpenAdmin
 author: Marius Kimmina
-date: 2021-05-02 14:10:00 +0800
+date: 2020-05-02 14:10:00 +0800
 categories: [HackTheBox]
 tags: [linux]
 published: true

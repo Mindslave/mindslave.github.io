@@ -1,5 +1,9 @@
 ---
 title: Pwnable.kr fd
+author: Marius Kimmina
+date: 2019-11-24 14:10:00 +0800
+categories: [Binary Exploitation]
+tags: [File descriptor]
 published: true
 ---
 

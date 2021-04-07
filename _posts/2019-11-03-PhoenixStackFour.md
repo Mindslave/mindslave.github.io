@@ -1,5 +1,9 @@
 ---
 title: Phoenix Stack-Four
+author: Marius Kimmina
+date: 2019-11-03 14:10:00 +0800
+categories: [Binary Exploitation]
+tags: [Buffer Overflow]
 published: true
 ---
 
