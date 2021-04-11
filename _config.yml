@@ -30,10 +30,10 @@ enforce_ssl: https://Mindslave.github.io
 
 
 github:
-  username: github_username             # change to your github username
+  username: Mindslave             # change to your github username
 
 twitter:
-  username: twitter_username            # change to your twitter username
+  username: Mindslave4            # change to your twitter username
 
 social:
   # Change to your full name.
@@ -42,11 +42,11 @@ social:
   email: mindslave.blog@protonmail.com
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username      # change to your twitter homepage
-    - https://github.com/username       # change to your github homepage
+    - https://twitter.com/Mindslave      # change to your twitter homepage
+    - https://github.com/Mindslave4       # change to your github homepage
+    - https://www.linkedin.com/in/marius-kimmina-33a328201
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
 
 google_site_verification: google_meta_tag_verification # change to your verification string
 # --------------------------
