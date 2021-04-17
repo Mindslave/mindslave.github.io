@@ -2,7 +2,7 @@
 title: Phoenix Stack-Five
 author: Marius Kimmina
 date: 2019-11-24 14:10:00 +0800
-categories: [Binary Exploitation]
+categories: [CTF, Binary Exploitation]
 tags: [Buffer Overflow]
 published: true
 ---

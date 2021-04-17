@@ -2,7 +2,7 @@
 title: Phoenix Stack-Three
 author: Marius Kimmina
 date: 2019-10-27 14:10:00 +0800
-categories: [Binary Exploitation]
+categories: [CTF, Binary Exploitation]
 tags: [Buffer Overflow]
 published: true
 ---
