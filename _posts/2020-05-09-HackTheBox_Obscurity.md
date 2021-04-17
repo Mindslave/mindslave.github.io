@@ -2,7 +2,7 @@
 title: HackTheBox Obscurity
 author: Marius Kimmina
 date: 2020-05-09 14:10:00 +0800
-categories: [HackTheBox]
+categories: [CTF, HackTheBox]
 tags: [linux, Cryptography]
 published: true
 ---

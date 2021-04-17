@@ -2,7 +2,7 @@
 title: HackTheBox Traverxec
 author: Marius Kimmina
 date: 2020-04-11 14:10:00 +0800
-categories: [HackTheBox]
+categories: [CTF, HackTheBox]
 tags: [BSD]
 published: true
 ---

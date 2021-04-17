@@ -2,7 +2,7 @@
 title: HackTheBox ServMon
 author: Marius Kimmina
 date: 2021-06-21 14:10:00 +0800
-categories: [HackTheBox]
+categories: [CTF, HackTheBox]
 tags: [ftp, Windows, path traversal]
 published: true
 ---

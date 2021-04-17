@@ -2,7 +2,7 @@
 title: HackTheBox Resolute
 author: Marius Kimmina
 date: 2021-05-30 14:10:00 +0800
-categories: [HackTheBox]
+categories: [CTF, HackTheBox]
 tags: [Windows, dll injection]
 published: true
 ---

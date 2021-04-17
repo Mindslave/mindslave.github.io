@@ -2,7 +2,7 @@
 title: HackTheBox Sauna
 author: Marius Kimmina
 date: 2020-07-18 14:10:00 +0800
-categories: [HackTheBox]
+categories: [CTF, HackTheBox]
 tags: [Windows, Kerberos, Privilege Escalation]
 published: true
 ---

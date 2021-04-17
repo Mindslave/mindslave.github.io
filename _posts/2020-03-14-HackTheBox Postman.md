@@ -2,7 +2,7 @@
 title: HackTheBox Postman 
 author: Marius Kimmina
 date: 2020-03-14 14:10:00 +0800
-categories: [HackTheBox]
+categories: [CTF, HackTheBox]
 tags: [Redis, Webminn]
 published: true
 ---
