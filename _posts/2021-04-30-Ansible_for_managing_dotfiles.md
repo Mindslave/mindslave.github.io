@@ -38,14 +38,8 @@ on any other tasks. A `playbook` can be made up of one big .yml file or it can b
 
 ### 2.3 Tasks
 
-## Example Role: Neovim
-
-## Why I think that Ansible is the right tool for the job
-I saw many people using bash scripts for this that kinda got the job done as well, but Ansible makes it easier to define
-playbooks that work accross different linux distributions as well as on MacOS by simly importing tasks based on the 
-ansible\_os\_family bultin variable.
-For every piece of software that should be installed and configured there is a seperate `role`. The structure for one of these roles
-looks like this:
+## Example Role: Tmux
+So lets, look at an example, installing and configuring Neovim with ansible. My Tmux role has the following layout:
 
 ```
 ├── files
@@ -56,8 +50,9 @@ looks like this:
     ├── main.yml
     └── redhat.yml
 ```
-Inside the `tasks` directory create a file called `main.yml` and then a seperate file for every os/distro you want to support.
-Inside the `main.yml` file we import all os/distro specific tasks according to the `ansible_os_family`
+
+Taking a closer look at `tasks/main.yml` we can see that we first start by importing tasking from `redhat.yml`, `debian.yml`
+and `darwin.yml` depending on the os/distro the playbook is running on.
 
 ```
 - import_tasks: redhat.yml
@@ -66,6 +61,33 @@ Inside the `main.yml` file we import all os/distro specific tasks according to t
   when: ansible_os_family == "Debian"
 - import_tasks: darwin.yml
   when: ansible_os_family == "Darwin"
+
+- name: Check if .tmux.conf already exists
+  stat: path="{{dotfiles_user_home}}/.tmux.conf"
+  register: tmux_stat
+
+- name: Back up tmux.conf if it exists
+  command: mv ~/.tmux.conf ~/.tmux.conf.bak
+  args:
+    creates: "{{dotfiles_user_home}}/.tmux.conf.bak"
+  when: tmux_stat.stat.exists
+
+- name: Symlink tmux.conf
+  file:
+    src: "{{ dotfiles_home }}/roles/tmux/files/.tmux.conf"
+    dest: "{{dotfiles_user_home}}/.tmux.conf"
+    state: link
+
+- name: Install Tmux Plugin Manger (tpm)
+  git:
+    repo: https://github.com/tmux-plugins/tpm
+    dest: ~/.tmux/plugins/tpm
+    version: master
 ```
 
-The `files` directory contains all the configuration files associated with the software, tmux in this case.
+To make sure that existing configurations are not overwritten by accident there is a check if .tmux.conf already exists 
+in the users $HOME directory. If it does exist, it is renamed to "tmux.conf.bak", this way it's content is not delted by accident.
+After that we create a symlink from the `.tmux.conf` in our ansible playrole to the home directory of the user.
+Using a symlink here has the clear benefit that all changes between the original file and the symlink are synchronized. 
+That means that if the user changes his `.tmux.conf` in his home directory, the changes are carried over to the repository 
+immediately and can be pushed upstream.

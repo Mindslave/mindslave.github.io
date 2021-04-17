@@ -2,7 +2,7 @@
 title: Malware Analysis - Packing
 author: Marius Kimmina
 date: 2020-10-17 14:10:00 +0800
-categories: [Malware Analysis]
+categories: [Malware Analysis, Packing]
 tags: [Malware, Packing]
 published: true
 ---
