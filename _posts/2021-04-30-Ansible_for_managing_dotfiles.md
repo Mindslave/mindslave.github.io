@@ -1,7 +1,7 @@
 ---
 title: Managing my system configurations with Ansible
 author: Marius Kimmina
-date: 2021-06-21 14:10:00 +0800
+date: 2021-05-05 14:10:00 +0800
 categories: [DevOps, Ansible]
 published: true
 tags: [Ansible, Dotfiles]
