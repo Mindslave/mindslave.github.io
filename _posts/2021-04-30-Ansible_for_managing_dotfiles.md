@@ -3,8 +3,8 @@ title: Managing my system configurations with Ansible
 author: Marius Kimmina
 date: 2021-06-21 14:10:00 +0800
 categories: [DevOps, Ansible]
-published: false
-tags: [Ansible, dotfiles]
+published: true
+tags: [Ansible, Dotfiles]
 ---
 
 
@@ -20,7 +20,7 @@ They are then faced with 2 options:
 * Work with the system as is
 
 The first of these solutions takes a lot of time upfront, the second one might be fine for short tasks but if they are 
-supposed to work with the given system for long, this becomes inefficient. This is were Ansible comes in, it can be used 
+supposed to work with the given system for a long time, this becomes inefficient. This is were Ansible comes in, it can be used 
 to reduce the setup time of a new system dramatically. In fact, once all the ansible playbook is ready, new systems can be 
 configured with one single command, leaving the developer/admin free to do other things while his system is getting ready.
 
@@ -94,5 +94,13 @@ immediately and can be pushed upstream.
 
 
 ### 3. Why Ansible for managing system configurations?
+
+I have done some research on how other people handled this problem of managing their system configurations and most of the time
+people were using some sort of bash script to place all the config files where they belong, but this approach doesn't work as well 
+when you are trying to support different systems such as Debian based Linux distros, Redhat based Linux distros as well as maybe MacOS.
+Also overtime your system configuration is going to grow and ansible makes it really easy to keep everything organized and in it's own place.
+Every program that I want to configure has it's own role, all the associated configuration files go under files/ in the role of the program.
+So ease of maintainability was really the main reason for me to choose ansible for this job instead of writing bash scripts like I saw many other
+people do.
 
 
