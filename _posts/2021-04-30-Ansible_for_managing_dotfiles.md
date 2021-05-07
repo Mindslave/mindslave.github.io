@@ -38,7 +38,7 @@ on any other tasks. A `playbook` can be made up of one big .yml file or it can b
 
 ### 2.3 Tasks
 
-## Example Role: Tmux
+### Example Role: Tmux
 So lets, look at an example, installing and configuring Neovim with ansible. My Tmux role has the following layout:
 
 ```
@@ -91,3 +91,8 @@ After that we create a symlink from the `.tmux.conf` in our ansible playrole to 
 Using a symlink here has the clear benefit that all changes between the original file and the symlink are synchronized. 
 That means that if the user changes his `.tmux.conf` in his home directory, the changes are carried over to the repository 
 immediately and can be pushed upstream.
+
+
+### 3. Why Ansible for managing system configurations?
+
+
