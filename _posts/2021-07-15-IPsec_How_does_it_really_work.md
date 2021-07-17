@@ -4,10 +4,8 @@ author: Marius Kimmina
 date: 2021-03-08 14:10:00 +0800
 categories: [How does it really work]
 tags: [docker, linux, tomcat]
-published: true
+published: false
 ---
-
-# IPsec - How does it really work
 
 ## 0x00 Introduction to IPsec
 
@@ -29,7 +27,7 @@ The protocol is supposed to offer:
 - Confidentiality
 - Integrity
 - Protection against Replay-attacks
-- Key Exchange
+- Key Management
 
 IPsec has a quite complex architecture, consisting of 3 main parts:
 
@@ -151,14 +149,15 @@ This Database contains rules on how IPsec will treat IP packets. The rules in th
 DISCARD means that the packet will be dropped immediately, BYPASS means that the packet will be forwarded immediately and PROTECT means that IPsec will be applied and the packet will be protected.
 
 ## 0x08 Security Association Database (SAD)
-
-If the SPD decided that an IP packet is to be protected, then the SAD will determine how to protect the packet.
+If the SPD decided that an IP packet is to be protected, then the SAD will determine how to protect the packet. 
+for that, it uses Security Associatons, which are policies for the communication between peers.
+Essentially, this database saves all information about what a connection between peers should looke like, such as which algorithms should be used, which keys have been exchanged, etc.
 
 ## 0x09 Peer Authorization Database
-
 This final database contains all information regarding authentication and authorization of systems that want to communicate via IPsec
 
 ## 0x0A Internet Key Exchange
+
 
 ## 0x0B Internet Key Exchange v2
 
