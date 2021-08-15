@@ -7,7 +7,7 @@ tags: [microservices]
 published: false
 ---
 
-![image](/assets/images/microservices/list-repos.png "list of repositorys")
+![image](/assets/images/microservices/MonoVsPolyRepo.png "Mono vs Poly Repo")
 
 Every organization that wants to adapt a microservice architecture has to inevitably decide to structure their code in either a large Monorepo or in many smaller repositorys, often called multi or poly repository. Not an easy decision to make by any means, that's why this article exists, to help you make an educated decision for your situation. Every organization is unique and what works for one may not work another, that also applies to choosing between monorepo and multiple repositories. 
 
@@ -34,7 +34,7 @@ We are going to look at both approaches in regards to:
 Since the vast majority of tech companies is following this approach, a lot of tools and solutions already exists. If you follow this approach then chances are that every problem you encounter someone else has already encountered and solved before you. If available tooling is your main concern, using multiple repositories is a safe bet.
 
 ### Monorepo
-Some tooling, like Googles "Bazel", does exist but it's far less and you will be less likely to find someone else who has already solved the same problem that you just encountered. If you decide to go for monorepo you should schedule more time to get your toolchain right.
+Some tooling, like Googles "Bazel", does exist but it's far less and you will be less likely to find someone else who has already solved the same problem that you just encountered. It is possible to use common existing CI/CD Tools, such as jenkins, for a Monorepo but they will require more configuration to do their job. If you decide to go for monorepo you should schedule more time to get your toolchain right. 
 
 ## Versioning
 ### Multirepo
