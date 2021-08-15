@@ -7,9 +7,9 @@ tags: [microservices]
 published: false
 ---
 
-![image](/assets/images/microservices/MonoVsPolyRepo.png "Mono vs Poly Repo")
-
 Every organization that wants to adapt a microservice architecture has to inevitably decide to structure their code in either a large Monorepo or in many smaller repositorys, often called multi or poly repository. Not an easy decision to make by any means, that's why this article exists, to help you make an educated decision for your situation. Every organization is unique and what works for one may not work another, that also applies to choosing between monorepo and multiple repositories. 
+
+![image](/assets/images/microservices/MonoVsPolyRepo.png "Mono vs Poly Repo")
 
 Let's first have an overview of the 2 approaches:
 
@@ -38,7 +38,9 @@ Some tooling, like Googles "Bazel", does exist but it's far less and you will be
 
 ## Versioning
 ### Multirepo
+Here the Polyrepo again benefits from the fact that most people use multiple repositories. A repository on Github can only have one version number (tag) for the entire repo, which is perfectly fine if every microservice lives in it's own place. You can easily have multiple versions of each and every service and librarry.
 ### Monorepo
+For a monorepo the most common approach is to have 1 version for all your microservices, meaning that if you make changes to 1 service and you bump up the version number, you bump up the version number for all your microservices. This approach requires you to have good tests to make sure that all your services still work together when you make an update. If you have those good tests tho, it's a blessing because you can never fall into trap of depending on older versions of a service a having to maintain multiple versions. When a bug comes up you also never have to check which version of XXX was YYY using. 
 
 ## Hiring New Staff
 ### Multirepo
