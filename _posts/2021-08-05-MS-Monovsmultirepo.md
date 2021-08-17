@@ -17,6 +17,13 @@ Let's first have an overview of the two approaches:
 
 * **Multirepo:** this can also be called the "normal approach", despite some tech giants embracing the monorepo the vast majority of organizations is using multiple repositories to manage their codebase. Here each service and earch libarry can get their own home, their own repository.
 
+If you already think that a monorepo sounds downright crazy, here are some companys that have publicly stated to use a monorepo internally:
+* Google
+* Uber
+* Twitter
+
+Google even mentioned that their monorepo contains over 2.000.000.000 Lines of code, that's about 130 times the size of the enitre linux kernel.
+
 You can already guess that both apporaches have advantages and disadvantages to them.  
 We are going to look at both approaches in regards to:
 
@@ -62,7 +69,7 @@ An area where the Monorepo truly shines is enforcing every developer to follow b
 Winner: Monorepo
 
 ## Performance
-
+Once your monorepo gets big it will become unfeasable to git clone the entire repo, you will need to special tooling, once again, to only copy the parts that you want to work on to disk. Obviously that's much easier an a polyrepo environment, you simply clone the service that you want to work on and you are done, no special tooling required what so ever.
 
 ## There Is No Silver Bullet
 
