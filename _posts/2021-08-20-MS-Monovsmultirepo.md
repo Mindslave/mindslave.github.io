@@ -1,7 +1,7 @@
 ---
 title: "Microservices: Mono- vs Polyrepo"
 author: Marius Kimmina
-date: 2021-20-08 14:10:00 +0800
+date: 2021-08-20 14:10:00 +0800
 categories: [DevOps]
 tags: [microservices]
 published: true
