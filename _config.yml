@@ -11,11 +11,11 @@ baseurl: ""
 lang: en-US
 
 # Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
-timezone: Asia/Shanghai
+timezone: Europe/Berlin
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # --------------------------
-title: Mindslave                          # the main title
+title: Marius Kimmina                          # the main title
 
 tagline: IT-Security, Hacking and DevOps
 
