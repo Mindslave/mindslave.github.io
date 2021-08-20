@@ -4,7 +4,7 @@ author: Marius Kimmina
 date: 2021-03-08 14:10:00 +0800
 categories: [DevOps]
 tags: [microservices]
-published: false
+published: true
 
 ---
 
