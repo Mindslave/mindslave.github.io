@@ -39,9 +39,11 @@ We are going to look at both approaches in regards to:
 
 Since the vast majority of tech companies is following this approach, a lot of tools and solutions already exists. If you follow this approach then chances are that every problem you encounter someone else has already encountered and solved before you. If available tooling is your main concern, using multiple repositories is a safe bet.  
 Some tooling aimed at Monorepos does exist, here are some examples:
+
 * Lerna (JavaScript)
 * Bazel (Language Agnostic)
 * NX (Angular)
+
 But in comparison there are still far fewer tools and you will be less likely to find someone else who has already solved the same problem that you just encountered. It is possible to use common existing CI/CD Tools, such as jenkins, for a Monorepo but they will require more configuration to do their job. If you decide to go for monorepo you should schedule more time to get your toolchain right. 
 
 **Winner:** Polyrepo
